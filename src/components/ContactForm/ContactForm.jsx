@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import actions from '../../redux/contacts/contacts-actions';
 import s from './ContactForm.module.css';
 
 function ContactForm({ onSubmit }) {
@@ -36,7 +38,8 @@ function ContactForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={haldleSubmit} autoComplete='off'>
+    // <form onSubmit={haldleSubmit} autoComplete='off'>
+    <form onSubmit={haldleSubmit}>
       <label>
         <p className={s.text}>Name</p>
         <input
@@ -74,4 +77,9 @@ ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default ContactForm;
+const mapDispatchToProps = dispatch => ({
+  onSubmit: ({ name, number }) =>
+    dispatch(actions.addContact({ name, number })),
+});
+
+export default connect(null, mapDispatchToProps)(ContactForm);
