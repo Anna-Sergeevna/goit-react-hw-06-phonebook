@@ -29,6 +29,11 @@ function ContactForm({ onSubmit }) {
     e.preventDefault();
 
     onSubmit({ name, number });
+
+    // (contacts.map(contact => contact.name).includes(name)
+    //   ? alert(`${name} is already in contacts.`)
+    //   : setContacts(prevState => [contact, ...prevState]);
+
     reset();
   };
 
